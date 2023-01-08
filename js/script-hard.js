@@ -1,16 +1,19 @@
-let num = 266219;
-let number = Array.from(String(num))
-
-console.log(number)
-
-
-function multiply() {
-    let a = 1;
-    for (let i = 0; i < number.length; i++)
-    a = a * number[i]
-    return a
+// let lang = "ru";
+let lang = "en";
+if (lang === "ru") {
+    console.log("пн, вт, ср, чт, пт, сб, вс")
+} else {
+    console.log("mon, tue, wed, thu, fri, sat, sun")
 }
-console.log(multiply())
-const result = multiply() ** 3
 
-console.log(String(result).slice(0, 2))
+switch(lang) {
+    case "ru":
+        console.log("пн, вт, ср, чт, пт, сб, вс");
+        break;
+    case "en":
+        console.log("mon, tue, wed, thu, fri, sat, sun");
+        break;
+
+}
+
+let result = lang === "ru" ? console.log("пн, вт, ср, чт, пт, сб, вс") : console.log("mon, tue, wed, thu, fri, sat, sun");
