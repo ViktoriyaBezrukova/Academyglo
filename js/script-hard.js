@@ -17,3 +17,8 @@ switch(lang) {
 }
 
 let result = lang === "ru" ? console.log("пн, вт, ср, чт, пт, сб, вс") : console.log("mon, tue, wed, thu, fri, sat, sun");
+
+
+let namePerson = "Maks";
+
+namePerson === "Artem" ? console.log("Director") : namePerson ==="Maksim" ? console.log("Prepodavatel") : console.log("Student") 
