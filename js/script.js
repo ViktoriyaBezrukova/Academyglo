@@ -54,4 +54,4 @@ if(0>= budgetDay ) {
     console.log("У вас высокий уровень дохода")
 }
 console.log(addExpenses);
-console.log("Цель будет достигнута за " + Math.ceil(mission / budgetMonth) + " месяцев(-а)")
+console.log("Цель будет достигнута за " + Math.ceil(mission / budgetMonth) + " месяцев(-а)");
