@@ -16,8 +16,6 @@ console.log("Цель заработать " + mission + " рублей");
 addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую (пример: Квартплата, проездной, кредит)")
 deposit = confirm("Есть ли у вас депозит в банке?");
 
-
-
 let expenses1, expenses2
 
 // let expenses1 = prompt("Введите обязательную статью расходов?");
@@ -30,8 +28,6 @@ do {
 }while(isNaN(parseFloat(money))){
 
 };
-
-
 
 
 addExpenses.toLowerCase();
@@ -51,16 +47,10 @@ function getExpensesMonth(a, b) {
         } else if(i === 1) {
             expenses2 = prompt("Введите обязательную статью расходов?");
         }
-
-
-
-        // sum += +prompt("Во сколько рублей это обойдется?");
         do {
             sum = prompt("Во сколько рублей это обойдется?");
             
-        }while(isNaN(parseFloat(sum))){
-        
-        };
+        }while(isNaN(parseFloat(sum))){};
     }
     console.log(sum)
     return sum;
@@ -81,9 +71,6 @@ function getTargerMonth(a, b) {
     return mission / accumulatedMonth
 }
 
-
-
-
 budgetDay = Math.ceil(accumulatedMonth / 30);
 
 if(0 > getTargerMonth() ) {
@@ -103,9 +90,5 @@ if(0>= budgetDay ) {
 }
 
 
-
-
-
 console.log("Накопления за месяц: " + accumulatedMonth);
-
 console.log("Бюджет на день : " + budgetDay);
