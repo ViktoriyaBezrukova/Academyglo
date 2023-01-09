@@ -1,12 +1,9 @@
 let money = 35000;
 let income = "Таксую";
-let addExpenses = "Такси, Поход в кино, Маникюр, Интернет, ЖКХ";
 let deposit = true;
 let mission = 150000;
-let period = 10;
 let budgetDay = money / 30
 
-addExpenses = addExpenses.toLowerCase();
 
 
 
@@ -14,12 +11,8 @@ addExpenses = addExpenses.toLowerCase();
 console.log(typeof money)
 console.log(typeof income)
 console.log(typeof deposit)
-console.log(addExpenses.length)
-console.log("Период равен " + period + " месяцев")
 console.log("Цель заработать " + mission + " рублей")
-console.log(Array.from(addExpenses))
 console.log(Math.floor(budgetDay)) 
-console.log("Период равен " + period + " месяцев");
 console.log("Цель заработать " + mission + " рублей");
 
 
@@ -36,7 +29,8 @@ let amount2 = +prompt("Во сколько " + expenses2 + " обойдется?
 
 
 
-
+console.log(addExpenses.toLowerCase().split(', '));
+console.log(addExpenses.length)
 
 let budgetMonth = money - amount1 - amount2;
 console.log("Бюджет на месяц: " + budgetMonth + "рублей");
@@ -53,5 +47,5 @@ if(0>= budgetDay ) {
 } else{
     console.log("У вас высокий уровень дохода")
 }
-console.log(addExpenses);
+
 console.log("Цель будет достигнута за " + Math.ceil(mission / budgetMonth) + " месяцев(-а)");
