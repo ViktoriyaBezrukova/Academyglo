@@ -16,7 +16,12 @@ switch(lang) {
 
 }
 
-let result = lang === "ru" ? console.log("пн, вт, ср, чт, пт, сб, вс") : console.log("mon, tue, wed, thu, fri, sat, sun");
+const weeks = {
+    'ru': ["пн, вт, ср, чт, пт, сб, вск"],
+    'en': ["md, tue, wen, thr, fri, sat, sun"]
+}
+let lang = 'ru';
+console.log(weeks["en"])
 
 
 let namePerson = "Maks";
