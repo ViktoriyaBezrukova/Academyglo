@@ -3,7 +3,7 @@ let number = Math.floor(Math.random()*100);
 quesses = 0;
 
 function randomNumber() {   
-    let result = prompt("Введите число ")   
+    let result = +prompt("Введите число ")   
     if(result == number) {
         alert("Вы угадали число! Попыток: " + quesses + "Число: " + number)
         let a = prompt("Хотели бы сыграть еще?")
@@ -22,7 +22,7 @@ function randomNumber() {
     } else if(isNaN(parseFloat(result)) || result === ""){
         quesses = quesses - 1;
         alert("Введите число!")
-    } else if(result === null){
+    } else if(result === 0){
         return alert("Игра окончена! Вы нажали отмена")
     }
 
