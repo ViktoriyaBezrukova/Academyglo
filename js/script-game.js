@@ -5,7 +5,14 @@ quesses = 0;
 function randomNumber() {   
     let result = prompt("Введите число ")   
     if(result == number) {
-        return alert("Вы угадали число! Попыток: " + quesses + "Число: " + number)
+        alert("Вы угадали число! Попыток: " + quesses + "Число: " + number)
+        let a = prompt("Хотели бы сыграть еще?")
+        if(a === null){
+            return alert("Игра окончена! Вы нажали отмена")
+        } else{
+            quesses = 0;
+            randomNumber()
+        }
     } else if(result < number && result != 0) {
         alert("Ваше число " + result + " меньше загаданного. Попыток: " + quesses )   
         quesses++;
@@ -23,7 +30,14 @@ function randomNumber() {
         randomNumber();
         
     } else {
-        return alert("Вы не угадали число")
+        alert("Попытки закончились, вы не угадали число.")
+        let a = prompt("Хотели бы сыграть еще?")
+        if(a === null){
+            return alert("Игра окончена! Вы нажали отмена")
+        } else{
+            quesses = 0;
+            randomNumber()
+        }
     }
     console.log(result)
 }
