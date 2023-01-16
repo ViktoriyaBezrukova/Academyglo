@@ -14,7 +14,7 @@ start = function() {
     }while(isNaN(money) || money === '' || money === null){
     };
 }
-start()
+start();
 
 
 let appData = {
