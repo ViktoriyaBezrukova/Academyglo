@@ -1,12 +1,6 @@
 let deposit = true;
 let money = 5000
-
-
-
 let expenses1, expenses2
-
-
-
 let appData = {
     budget: money,
     expenses: {},
@@ -44,49 +38,11 @@ let appData = {
                 appData.income[itemIncome] = cashIncome
             }
 
-
-            // addExpenses = addExpenses.toLowerCase()
-            // addExpenses = addExpenses.split(', ')
-            
-            // console.log(addExpenses)
-            //     for(i of addExpenses){
-            //         i = i.charAt(0).toUpperCase() + i.substr(1)
-            //         console.log(i)
-            //     }
-            // let showTypeof = function(item) {
-            //     console.log(typeof item)
-            // }
-            
-            // let a  = addExpenses.join(',')
-            // console.log(a)
-
-
-
-        
-    
         do {
             addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую (пример: Квартплата, проездной, кредит)")
         } while (addExpenses === null || !(addExpenses = addExpenses.trim())); 
         result = addExpenses.split(', ').map(s => s.charAt(0).toUpperCase() + s.substr(1));
         appData.addExpenses = result.join(', ')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        appData.deposit = confirm("Есть ли у вас депозит в банке?");
 
         let sum = 0;
     
@@ -124,6 +80,7 @@ let appData = {
             }
         },
     getInfoDeposit: function() {
+        appData.deposit = confirm("Есть ли у вас депозит в банке?");
         if(appData.deposit) {
             do{
             appData.percentDeposit = prompt("Какой годовой процент?")
@@ -133,9 +90,7 @@ let appData = {
             do{
                 appData.moneyDeposit = prompt("Какая сумма заложена?") 
                 appData.moneyDeposit = appData.moneyDeposit && appData.moneyDeposit.trim() 
-            }while(isNaN(appData.moneyDeposit) || appData.moneyDeposit == '' || appData.moneyDeposit === null){};
-
-            
+            }while(isNaN(appData.moneyDeposit) || appData.moneyDeposit == '' || appData.moneyDeposit === null){}       
 
         }
     },
@@ -144,7 +99,6 @@ let appData = {
     }
     }
 
-
     appData.start();
     appData.asking();
     appData.getExpensesMonth();
@@ -152,14 +106,9 @@ let appData = {
     appData.getTargerMonth();
     appData.getStatusIncome();
     appData.getInfoDeposit()
-// let showTypeof = function(item) {
-//     console.log(typeof item)
-// }
-// showTypeof(deposit)
-// showTypeof(money)
 
-console.log(appData)
-for(i in appData){
+    console.log(appData)
+    for(i in appData){
     console.log("Наша программа включает в себя данные: " +i + ":" + appData[i])
 }
 
