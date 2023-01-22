@@ -1,14 +1,59 @@
-let buttonStart = document.getElementById('start')
-let plusButtonIncome = document.getElementsByTagName('btn_plus')[0]
-let plusButtonExpenses = document.getElementsByTagName('btn_plus')[1]
-let checkbox = document.querySelectorAll('.deposit-checkmark')
-let inputExpenses = document.querySelectorAll('.additional_income-item')
-let budgetDayValue = document.getElementsByClassName('.budget_day-value')
-let expensesMonthValue = document.getElementsByClassName('.expenses_month-value')
-let incomeMonthText = document.getElementsByClassName('.additional_income-value')
-let expensesMonthText = document.getElementsByClassName('.additional_expenses-value')
-let savingsMonthValue = document.getElementsByClassName('.income_period-value')
-let targetMonthValue = document.getElementsByClassName('.target_month-value')
+let book = document.querySelectorAll('.book'),
+    adv = document.querySelector('.adv '),
+    chapter = document.querySelectorAll('li')
+    title = document.querySelectorAll('a'),
+    newLi = document.createElement('li')
+    body = document.querySelector('body')
+    console.log(title)
+console.log(chapter)
+book[1].after(book[0])
+book[0].after(book[4])
+book[4].after(book[3])
+book[3].after(book[5])
+adv.remove()
+
+book[0].append(chapter[3])
+book[0].append(chapter[6])
+book[0].append(chapter[8])
+book[0].append(chapter[4])
+book[0].append(chapter[5])
+book[0].append(chapter[7])
+book[0].append(chapter[9])
+book[0].append(chapter[2])
+book[0].append(chapter[10])
+
+book[5].append(chapter[55])
+book[5].append(chapter[49])
+book[5].append(chapter[50])
+book[5].append(chapter[48])
+book[5].append(chapter[52])
+book[5].append(chapter[53])
+book[5].append(chapter[51])
+book[5].append(chapter[54])
+book[5].append(chapter[56])
+
+newLi.textContent = "Глава 8: За пределами ES6"
+title[4].textContent = ("Книга 3. this и Прототипы Объектов")
+chapter[25].after(newLi)
+body.style.backgroundImage = "url(./image/you-dont-know-js.jpg)"
+
+
+// ! 1 урок работа с сайтом
+// let buttonStart = document.getElementById('start')
+// let plusButtonIncome = document.getElementsByTagName('btn_plus')[0]
+// let plusButtonExpenses = document.getElementsByTagName('btn_plus')[1]
+// let checkbox = document.querySelectorAll('.deposit-checkmark')
+// let inputExpenses = document.querySelectorAll('.additional_income-item')
+// let budgetDayValue = document.getElementsByClassName('.budget_day-value')
+// let expensesMonthValue = document.getElementsByClassName('.expenses_month-value')
+// let incomeMonthText = document.getElementsByClassName('.additional_income-value')
+// let expensesMonthText = document.getElementsByClassName('.additional_expenses-value')
+// let savingsMonthValue = document.getElementsByClassName('.income_period-value')
+// let targetMonthValue = document.getElementsByClassName('.target_month-value')
+
+
+
+// ! Уроки по js
 // let deposit = true;
 // let money = 5000
 // let expenses1, expenses2
