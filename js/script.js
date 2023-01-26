@@ -1,44 +1,3 @@
-// let book = document.querySelectorAll('.book'),
-//     adv = document.querySelector('.adv '),
-//     chapter = document.querySelectorAll('li')
-//     title = document.querySelectorAll('a'),
-//     newLi = document.createElement('li')
-//     body = document.querySelector('body')
-//     console.log(title)
-// console.log(chapter)
-// book[1].after(book[0])
-// book[0].after(book[4])
-// book[4].after(book[3])
-// book[3].after(book[5])
-// adv.remove()
-
-// book[0].append(chapter[3])
-// book[0].append(chapter[6])
-// book[0].append(chapter[8])
-// book[0].append(chapter[4])
-// book[0].append(chapter[5])
-// book[0].append(chapter[7])
-// book[0].append(chapter[9])
-// book[0].append(chapter[2])
-// book[0].append(chapter[10])
-
-// book[5].append(chapter[55])
-// book[5].append(chapter[49])
-// book[5].append(chapter[50])
-// book[5].append(chapter[48])
-// book[5].append(chapter[52])
-// book[5].append(chapter[53])
-// book[5].append(chapter[51])
-// book[5].append(chapter[54])
-// book[5].append(chapter[56])
-
-// newLi.textContent = "Глава 8: За пределами ES6"
-// title[4].textContent = ("Книга 3. this и Прототипы Объектов")
-// chapter[25].after(newLi)
-// body.style.backgroundImage = "url(./image/you-dont-know-js.jpg)"
-
-
-// ! 1 урок работа с сайтом
 let buttonStart = document.getElementById('start'),
     btnPlus = document.getElementsByTagName('button')
     incomePlus = btnPlus[0],
@@ -66,7 +25,7 @@ let buttonStart = document.getElementById('start'),
     additionalExpensesItem = document.querySelector('.additional_expenses-item')
     targetAmount = document.querySelector('.target-amount')
     incomeItem = document.querySelectorAll('.income-items')
-    periodAmountText = document.querySelector('.period-amount')
+    periodAmount = document.querySelector('.period-amount')
 
 let deposit = true;
 let expenses1, expenses2
@@ -85,21 +44,15 @@ let appData = {
     expensesMonth: 0,
     calcPeriod:0,
     start: function() {
-        if(salaryAmount.value === ''){
-            alert('Ошибка, поле "Месячный доход" должно быть заполнено!')
-            return
-        }
-
-        
         appData.budget = +salaryAmount.value
 
-        appData.getExpenses()
+        appData.getExpenses();
         appData.getIncome();
+        appData.periodValue()
         appData.getExpensesMonth();
         appData.getAddExpenses();
         appData.getAddIncome();
         appData.getBudget();
-
         appData.showResult();
     },
     showResult: function(){
@@ -210,30 +163,26 @@ let appData = {
         return appData.budgetMonth * periodSelect.value;
     },
     periodValue: function() {
-        let a = periodSelect.value
-        console.log(a)
+        periodSelect.addEventListener("change", function(){
+            periodAmount.innerHTML = periodSelect.value
+        })
+
         
     },
-    }
-
+    notEmpty: function() {
+        salaryAmount.addEventListener('input', function(){
+            start.disabled = (this.value === '')
+        })
+    },
+}   
     start.addEventListener('click', appData.start);
+    appData.notEmpty()
     expensesPlus.addEventListener('click', appData.addExpensesBlock)
     incomePlus.addEventListener('click', appData.addIncomeBlock)
     appData.getTargetMonth();
     appData.getInfoDeposit()
-
-console.log(appData)
-
-// for(i in appData){
-//     console.log("Наша программа включает в себя данные: " +i + ":" + appData[i])
-// }
+    console.log(appData)
+    appData.periodValue()
 appData.getTargerMonth = Math.ceil(appData.getTargetMonth())
-
-// if(0 > appData.getTargerMonth ) {
-//     console.log("Цель не будет достигнута")
-// } else{
-//     console.log("Цель будет достигнута за " + Math.ceil(appData.getTargerMonth) + " месяцев(-а)")
-// }
-
 
 
