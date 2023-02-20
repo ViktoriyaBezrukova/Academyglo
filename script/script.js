@@ -151,7 +151,8 @@ let timerHours = document.querySelector('#timer-hours'),
             btn = document.querySelectorAll('.portfolio-btn'),
             
             slider = document.querySelector('.portfolio-content');
-            dotParent = document.querySelector('.portfolio-dots')
+            dotParent = document.querySelector('.portfolio-dots');
+            let interval;
 
         let currentSlide = 0;
     
@@ -183,16 +184,165 @@ let timerHours = document.querySelector('#timer-hours'),
             nextSlide(dot, currentSlide, 'dot-active')
         }
 
-        const startSlide = (time) =>{
-            setInterval(autoPlaySlide, time);
+        const startSlide = (time = 3000) =>{
+            interval = setInterval(autoPlaySlide, time);
         }
 
         const stopSlide = () =>{
+            clearInterval(interval)
+        };
 
-        }
+        slider.addEventListener('click', (event) =>{
+            event.preventDefault()
+            let target = event.target
+            dot = document.querySelectorAll('.dot');
+            if(!target.matches('.portfolio-btn, .dot')){
+                return
+            }
+            prevSlide(slide, currentSlide, 'portfolio-item-active')
+            prevSlide(dot, currentSlide, 'dot-active')
+
+            if(target.matches('#arrow-right')){
+                currentSlide++;
+            } else if (target.matches('#arrow-left')){
+                currentSlide--;
+            } else if(target.matches('.dot')){
+                dot.forEach((elem, index) =>{
+                    if(elem === target){
+                        currentSlide = index
+                    }
+                })
+            }
+            if(currentSlide >= slide.length){
+                currentSlide = 0
+            }
+            if(currentSlide < 0){
+                currentSlide = slide.length - 1
+            }
+            nextSlide(slide, currentSlide, 'portfolio-item-active')
+            nextSlide(dot, currentSlide, 'dot-active')
+
+        });
+
+        slider.addEventListener('mouseover', (event)=>{
+            if(event.target.matches('.portfolio-btn') || event.target.matches('.dot')){
+                stopSlide();
+            }
+        });
+
+        slider.addEventListener('mouseout', (event)=>{
+            if(event.target.matches('.portfolio-btn') || event.target.matches('.dot')){
+                startSlide();
+            }
+        })
+
         startSlide(1500);
     }
     slider();
 
+// наша команда
+    let ourCompany = () =>{
+        let img = document.querySelectorAll('.command__photo');
+    
+    
+        for(let i = 0; i < img.length; i++){
+            let src = img[i].src
+            img[i].addEventListener('mouseenter', (e) =>{
+                event.target.src = event.target.dataset.img
+            })
+            img[i].addEventListener('mouseout', (e) => {
+                event.target.src = src
+            })
+        }
+    }
 
+    ourCompany()
+    // блок рассчитать стоимость
+
+    let calcItem = document.querySelectorAll('.calc-item')
+        const onlyNum = function(){
+            this.value = this.value.replace(/\D/g, '')
+        }
+        const onlyLetter = function(){
+            this.value = this.value.replace(/[^А-Яа-яЁё\-( )]/g,'');
+        }
+        const email = function(){
+            this.value = this.value.replace(/\w+@\w+\.\w{2,3}/)  
+        }
+        const phoneNum = function(){
+            this.value = this.value.replace(/\+?[78]([-()]*\d){10}/g)
+        }
+
+        for(let i = 0; i < calcItem.length; i++){
+            calcItem[i].addEventListener('input', onlyNum)
+        };
+    
+        document.getElementById('form2-name').addEventListener('input', onlyLetter)
+        document.getElementById('form2-message').addEventListener('input', onlyLetter)
+        document.getElementById('form2-email').addEventListener('input', email)
+        document.getElementById('form2-phone').addEventListener('input', phoneNum)
+
+
+    // const string = `boss@yandex.ru
+    // +79954106737 
+    // 89371056613
+    // 8(999)123-4356`
+    // const email = string.match(/\w+@\w+\.\w{2,3}/) 
+    // const mobile = string.match(/\+?[78]([-()]*\d){10}/g)
+    // console.log(email)
+    // console.log(mobile)
+
+
+
+    // калькулятор
+    const calc = (price = 100) =>{
+
+            const calcBlock = document.querySelector('.calc-block'),
+            calcType = document.querySelector('.calc-type'),
+            calcSquare = document.querySelector('.calc-square'),
+            calcDay = document.querySelector('.calc-day'),
+            calcCount = document.querySelector('.calc-count'),
+            totalValue = document.getElementById('total');
+
+        const countSum = () =>{
+            let total = 0,
+                countValue = 1,
+                dayValue = 1;
+
+            const typeValue = calcType.options[calcType.selectedIndex].value,
+                squareValue = +calcSquare.value;
+
+
+            
+                if(calcCount.value > 1){
+                    countValue += (calcCount.value - 1) / 10;
+                }    
+
+                if(calcDay.value && calcDay.value < 5){
+                    dayValue *= 2
+                } else if(calcDay.value && calcDay.value < 10){
+                    dayValue *= 1.5
+                }
+
+
+            if(typeValue && squareValue){
+                total = price * typeValue * squareValue * countValue * dayValue
+            }
+            
+            
+
+            totalValue.textContent = total
+        }
+
+        
+        calcBlock.addEventListener('change', (event) =>{
+            const target = event.target;
+
+            if(target.matches('.calc-type') || target.matches('.calc-square') ||target.matches('.calc-day') || target.matches('.calc-count')){
+                countSum()
+            }
+        });
+        
+    }
+    calc(100);
 });
