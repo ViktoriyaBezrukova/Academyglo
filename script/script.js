@@ -240,6 +240,7 @@ let timerHours = document.querySelector('#timer-hours'),
     }
     slider();
 
+
 // наша команда
     let ourCompany = () =>{
         let img = document.querySelectorAll('.command__photo');
@@ -257,8 +258,10 @@ let timerHours = document.querySelector('#timer-hours'),
     }
 
     ourCompany()
-    // блок рассчитать стоимость
 
+
+
+    // блок рассчитать стоимость
     let calcItem = document.querySelectorAll('.calc-item')
         const onlyNum = function(){
             this.value = this.value.replace(/\D/g, '')
@@ -342,7 +345,57 @@ let timerHours = document.querySelector('#timer-hours'),
                 countSum()
             }
         });
-        
     }
     calc(100);
+
+
+    // send-ajax-form
+
+    const sendForm = () =>{
+        const errorMessage = 'Что то пошло не так...',
+            loadMessage = 'Загрузка...',
+            successMassage = 'Спасибо! Мы скоро с вами свяжемся!';
+
+        const form = document.getElementById('form1');
+
+        const statusMessage = document.createElement('div');
+        statusMessage.style.cssText = 'font-size: 3rem;';
+        form.appendChild(statusMessage)
+        
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            form.appendChild(statusMessage);
+
+            const request = new XMLHttpRequest();
+
+            request.addEventListener('readystatechange', () =>{
+                statusMessage.textContent = loadMessage;
+                if(request.readyState !== 4){
+                    return;
+                }
+                if(request.status === 200){
+                    statusMessage.textContent = successMassage
+                } else{
+                    statusMessage.textContent = errorMessage;
+                }
+            });
+
+            request.open('POST', './server.php');
+            request.setRequestHeader('Content-Type', 'application/json');
+            const formData = new FormData(form);
+            let body = {};
+
+            // for(let value of formData.entries()){
+            //     body[value[0]] = value[1]
+            // };
+
+            formData.forEach((val, key) =>{
+                body[key] = val
+            })
+
+            request.send(JSON.stringify(body));
+        });
+    };
+
+    sendForm();
 });
